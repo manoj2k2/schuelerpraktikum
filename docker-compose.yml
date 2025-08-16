@@ -35,7 +35,7 @@ services:
   backend:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.backend
     container_name: schuelerpraktikum-backend
     ports:
       - "7109:7109"
@@ -50,13 +50,16 @@ services:
       - keycloak
     volumes:
       - ./backend:/app
-  praktikum-server:
+
+  frontend:
     build:
-      context: ./praktikum-server
-      dockerfile: Dockerfile
-    container_name: praktikum-server
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: schuelerpraktikum-frontend
     ports:
-      - "5031:5031"
+      - "4210:80"
+    depends_on:
+      - backend
 
 volumes:
   postgres_data:
