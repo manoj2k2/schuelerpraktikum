@@ -1,0 +1,70 @@
+
+
+.create-profile-card {
+  max-width: 430px;
+  margin: 3rem auto;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10), 0 1.5px 4px 0 rgba(0,0,0,0.08);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.mat-card-title {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.profile-field {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.profile-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+button[mat-raised-button] {
+  min-width: 160px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px 0 rgba(25, 118, 210, 0.10);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+button[mat-raised-button]:hover:not(:disabled) {
+  background: #1565c0;
+  box-shadow: 0 4px 16px 0 rgba(25, 118, 210, 0.18);
+}
+button[mat-raised-button]:disabled {
+  background: #bdbdbd;
+}
+
+.error {
+  color: #d32f2f;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+.success {
+  color: #388e3c;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}

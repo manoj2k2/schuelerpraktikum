@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:22.0.1
+    container_name: kc
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HTTPS_CERTIFICATE_FILE=/etc/x509/https/tls.crt
+      - KC_HTTPS_CERTIFICATE_KEY_FILE=/etc/x509/https/tls.key
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    command:
+      - "start-dev"
+      - "--https-port=8443"
+    depends_on:
+      - postgres
+    volumes:
+      - ./certs:/etc/x509/https:ro
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres
+    environment:
+      - POSTGRES_DB=schuelerpraktikum
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=YOUR_PASSWORD
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: schuelerpraktikum-backend
+    ports:
+      - "7109:7109"
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=schuelerpraktikum;Username=postgres;Password=YOUR_PASSWORD
+      - Keycloak__auth-server-url=https://keycloak:8443/
+      - Keycloak__realm=schuelerpraktikum
+      - Keycloak__resource=schuelerpraktikum-backend
+      - Keycloak__credentials__secret=FNCfulHu0UGCVl97B4eY2JWIbMUrp2l5
+    depends_on:
+      - postgres
+      - keycloak
+    volumes:
+      - ./backend:/app
+  praktikum-server:
+    build:
+      context: ./praktikum-server
+      dockerfile: Dockerfile
+    container_name: praktikum-server
+    ports:
+      - "5031:5031"
+
+volumes:
+  postgres_data:
+  

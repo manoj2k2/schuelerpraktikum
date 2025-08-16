@@ -1,0 +1,31 @@
+
+<mat-card class="upload-card">
+	<mat-card-title>Feedback & Certificate Upload</mat-card-title>
+	<mat-card-content>
+		<div class="file-input-row">
+			<input type="file" id="fileInput" (change)="onFileSelected($event)" [disabled]="uploading" hidden>
+			<button mat-raised-button color="primary" (click)="fileInput.click()" [disabled]="uploading">
+				<mat-icon>upload_file</mat-icon> Choose File
+			</button>
+			<span *ngIf="uploadedFile">{{ uploadedFile.name }}</span>
+			<input #fileInput type="file" style="display:none" (change)="onFileSelected($event)">
+		</div>
+
+		<mat-progress-bar *ngIf="uploading" mode="determinate" [value]="uploadProgress"></mat-progress-bar>
+
+		<div *ngIf="uploadSuccess" class="upload-success">
+			<mat-icon color="primary">check_circle</mat-icon> Upload successful!
+			<button mat-button color="accent" (click)="viewFile()">
+				<mat-icon>visibility</mat-icon> View
+			</button>
+			<a *ngIf="uploadedFileUrl" [href]="uploadedFileUrl" download="{{ uploadedFile?.name }}">
+				<button mat-button color="primary">
+					<mat-icon>download</mat-icon> Download
+				</button>
+			</a>
+		</div>
+		<div *ngIf="uploadError" class="upload-error">
+			<mat-icon color="warn">error</mat-icon> {{ uploadError }}
+		</div>
+	</mat-card-content>
+</mat-card>

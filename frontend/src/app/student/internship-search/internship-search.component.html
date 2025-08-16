@@ -1,0 +1,52 @@
+
+<mat-card class="internship-search-card">
+	<mat-card-title>Internship Search</mat-card-title>
+	<mat-card-content>
+		<mat-form-field appearance="outline" class="search-field">
+			<mat-label>Filter internships</mat-label>
+			<input matInput [(ngModel)]="filter" placeholder="Search by title, company, or location">
+			<button mat-icon-button matSuffix *ngIf="filter" (click)="filter = ''"><mat-icon>close</mat-icon></button>
+		</mat-form-field>
+
+		<table mat-table [dataSource]="filteredInternships" class="mat-elevation-z2 internship-table">
+			<ng-container matColumnDef="title">
+				<th mat-header-cell *matHeaderCellDef>Title</th>
+				<td mat-cell *matCellDef="let internship">{{ internship.title }}</td>
+			</ng-container>
+			<ng-container matColumnDef="company">
+				<th mat-header-cell *matHeaderCellDef>Company</th>
+				<td mat-cell *matCellDef="let internship">{{ internship.company }}</td>
+			</ng-container>
+			<ng-container matColumnDef="location">
+				<th mat-header-cell *matHeaderCellDef>Location</th>
+				<td mat-cell *matCellDef="let internship">{{ internship.location }}</td>
+			</ng-container>
+			<ng-container matColumnDef="expand">
+				<th mat-header-cell *matHeaderCellDef></th>
+				<td mat-cell *matCellDef="let internship">
+					<button mat-icon-button (click)="toggleExpand(internship.id)">
+						<mat-icon>{{ expandedId === internship.id ? 'expand_less' : 'expand_more' }}</mat-icon>
+					</button>
+				</td>
+			</ng-container>
+
+			<tr mat-header-row *matHeaderRowDef="['title', 'company', 'location', 'expand']"></tr>
+			<tr mat-row *matRowDef="let row; columns: ['title', 'company', 'location', 'expand'];"></tr>
+			<tr *ngFor="let internship of filteredInternships">
+				<td colspan="4" class="expand-row" *ngIf="expandedId === internship.id">
+					<mat-card class="details-card">
+						<mat-card-title>{{ internship.title }}</mat-card-title>
+						<mat-card-content>
+							<div><strong>Company:</strong> {{ internship.company }}</div>
+							<div><strong>Location:</strong> {{ internship.location }}</div>
+							<div><strong>Description:</strong> {{ internship.description }}</div>
+						</mat-card-content>
+					</mat-card>
+				</td>
+			</tr>
+		</table>
+		<div *ngIf="filteredInternships.length === 0" class="no-results">
+			<mat-icon>info</mat-icon> No internships found.
+		</div>
+	</mat-card-content>
+</mat-card>

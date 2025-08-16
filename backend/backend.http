@@ -1,0 +1,26 @@
+@backend_HostAddress = http://localhost:5108
+
+GET {{backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+POST http://localhost:8080/realms/schuelerpraktikum/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password
+&client_id=schuelerpraktikum-backend
+&client_secret=FNCfulHu0UGCVl97B4eY2JWIbMUrp2l5
+&username=admin
+&password=admin
+
+###
+curl -X POST "http://localhost:8080/realms/schuelerpraktikum/protocol/openid-connect/token" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "grant_type=password" \
+    -d "client_id=schuelerpraktikum-backend" \
+    -d "client_secret=FNCfulHu0UGCVl97B4eY2JWIbMUrp2l5" \
+    -d "username=YOUR_USERNAME" \
+    -d "password=YOUR_PASSWORD"
+
+###

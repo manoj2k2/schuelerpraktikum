@@ -6,7 +6,11 @@
 /out-tsc
 /bazel-out
 /praktikum-server/.venv
+praktikum-server/.venv
 /praktikum-server/__pycache__
+/praktikum-server/__pycache__
+ praktikum-server/.venv/
+ _pycache_/
 
 # Node
 /node_modules

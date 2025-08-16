@@ -1,0 +1,1 @@
+penssl req -x509 -newkey rsa:4096 -keyout     D:\Code\gemini\schuelerpraktikum\certs\tls.key -out D:\Code\gemini\schuelerpraktikum\certs\tls.crt -days 365 -nodes -subj "/CN=localhost"

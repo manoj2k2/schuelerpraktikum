@@ -1,0 +1,27 @@
+
+<mat-card class="tracking-card">
+	<mat-card-title>Application Tracking</mat-card-title>
+	<mat-card-content>
+		<div *ngFor="let app of applications" class="app-track">
+			<mat-card class="app-track-card">
+				<mat-card-title>{{ app.title }} <span class="company">({{ app.company }})</span></mat-card-title>
+				<mat-card-content>
+					<mat-horizontal-stepper [selectedIndex]="app.status" linear>
+						<mat-step *ngFor="let step of statusSteps; let i = index" [completed]="app.status > i">
+							<ng-template matStepLabel>{{ step }}</ng-template>
+						</mat-step>
+					</mat-horizontal-stepper>
+					<div class="status-actions">
+						<button mat-button *ngFor="let step of statusSteps; let i = index" [color]="app.status === i ? 'primary' : ''" (click)="updateStatus(app, i)">
+							{{ step }}
+						</button>
+					</div>
+					<div class="feedback-row">
+						<mat-icon>feedback</mat-icon>
+						<input matInput placeholder="Feedback (optional)" [(ngModel)]="app.feedback" (blur)="updateFeedback(app, app.feedback)">
+					</div>
+				</mat-card-content>
+			</mat-card>
+		</div>
+	</mat-card-content>
+</mat-card>

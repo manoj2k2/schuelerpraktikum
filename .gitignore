@@ -1,0 +1,8 @@
+node_modules
+.venv
+__pycache__
+backend/bin
+backend/obj
+FileContentIndex
+.vscode
+.vs

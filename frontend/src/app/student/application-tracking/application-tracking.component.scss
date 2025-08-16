@@ -1,0 +1,28 @@
+
+.tracking-card {
+	max-width: 900px;
+	margin: 2rem auto;
+}
+.app-track {
+	margin-bottom: 2rem;
+}
+.app-track-card {
+	margin-bottom: 1rem;
+}
+.company {
+	font-weight: normal;
+	color: #757575;
+	font-size: 0.95em;
+}
+.status-actions {
+	margin: 1rem 0 0.5rem 0;
+	display: flex;
+	gap: 0.5rem;
+	flex-wrap: wrap;
+}
+.feedback-row {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-top: 0.5rem;
+}
