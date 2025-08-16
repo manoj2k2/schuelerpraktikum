@@ -5,7 +5,15 @@ COPY backend/*.csproj ./
 RUN dotnet restore
 
 # Copy the rest of the application code
-COPY backend/. .
+COPY backend/Data/ ./Data/
+COPY backend/GraphQL/ ./GraphQL/
+COPY backend/Migrations/ ./Migrations/
+COPY backend/Models/ ./Models/
+COPY backend/Properties/ ./Properties/
+COPY backend/appsettings.Development.json .
+COPY backend/appsettings.json .
+COPY backend/backend.http .
+COPY backend/Program.cs .
 
 # Build the application
 RUN dotnet publish -c Release -o out

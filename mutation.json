@@ -1,0 +1,3 @@
+{
+  "query": "mutation { createStudent(name: \"Aryan Sahani\", email: \"aryan.sahani@example.com\", school: \"Mittelschule Heyogenaurach\") { id name email school } }"
+}
